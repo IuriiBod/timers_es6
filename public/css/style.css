@@ -1,0 +1,53 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px;
+}
+body > .container {
+  padding: 60px 15px 0;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f5f5f5;
+}
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.create-timer .timer-description {
+  resize: vertical;
+}
+.create-timer .clear-timer {
+  margin-top: 34px;
+}
+#timer-table tr td,
+#timer-table tr th {
+  text-align: center;
+  vertical-align: middle;
+}
+#timer-table .name {
+  max-width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#timer-table .control-button a {
+  margin: 0px 3px;
+}
+#timer-table .before10 {
+  background-color: rgba(132, 225, 132, 0.7);
+}
+#timer-table .before5 {
+  background-color: rgba(20, 205, 50, 0.7);
+}
+#timer-table .before1 {
+  background-color: rgba(255, 102, 102, 0.7);
+}
+#timer-table .before0 {
+  background-color: rgba(102, 102, 102, 0.7);
+}

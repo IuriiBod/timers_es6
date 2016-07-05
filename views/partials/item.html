@@ -1,0 +1,10 @@
+<td class="col-md-2 name" ng-bind="item.name"></td>
+<td class="col-md-2" ng-bind="item.description"></td>
+<td class="col-md-2" ng-bind="item.date | date:'yyyy-MM-dd HH:mm:ss'"></td>
+<td class="col-md-2" ng-bind="current - item.date | timerFilter"></td>
+<td class="col-md-2" ng-bind="item.enddate - item.date | timerFilter"></td>
+<td class="col-md-2 control-button">
+	<a href ng-click="vm.edit(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+	<a href ng-click="vm.delete(item.id)"><i class="fa fa-trash" aria-hidden="true"></i></a>					
+	<a href ng-click="vm.reset(item.id)"><i class="fa fa-calendar-times-o" aria-hidden="true"></i></a>
+</td>

@@ -1,0 +1,68 @@
+@color10: rgba(132, 225, 132, 0.7);
+@color5: rgba(20, 205, 50, 0.7);
+@color1: rgba(255, 102, 102, 0.7);
+@color0: rgba(102, 102, 102, 0.7);
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+ 
+  > .container {
+		padding: 60px 15px 0;
+	}
+}
+
+.footer {
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f5f5f5;
+
+    > .container {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+}
+
+.create-timer {
+  .timer-description {
+    resize: vertical;
+  }
+
+  .clear-timer {
+    margin-top: 34px;
+  }
+}
+
+#timer-table {
+  tr td, tr th {
+    text-align: center;
+	vertical-align: middle;
+  }
+  .name {
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .control-button a {
+	margin: 0px 3px;
+  }
+  .before10 {
+    background-color: @color10;
+  }
+  .before5 {
+    background-color: @color5;
+  }
+  .before1 {
+    background-color: @color1;
+  }
+  .before0 {
+    background-color: @color0;
+  }
+}

@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h3 class="modal-title">Create/edit timer</h3>
+</div>
+<div class="modal-body create-timer">
+  <form name="timerForm">
+    <div class="form-group">
+      <label for="timerName">Timer name:</label>
+      <input type="text" class="form-control" id="timerName" ng-model="vm.timer.name" ng-required="true" placeholder="my timer">
+    </div>
+    <div class="form-group">
+      <label for="timerDescription">Timer description:</label>
+      <textarea class="form-control timer-description" id="timerDescription" ng-model="vm.timer.description" rows="3"></textarea>
+    </div>
+		
+		<label class="control-label" for="timerStartDate">Timer start date:</label>
+		<div class="form-group">
+			<p class="input-group">
+				<input type="text" class="form-control" id="timerStartDate" datetime-picker="MM/dd/yyyy HH:mm" ng-model="vm.timer.date" is-open="vm.isTimerStart.open" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="vm.openCalendar($event, 'isTimerStart')"><i class="fa fa-calendar"></i></button>
+				</span>
+			</p>
+		</div>
+		
+		<label class="control-label" for="timerEndDate">Period:</label>
+		<div class="form-group">
+			<p class="input-group">
+				<input type="text" class="form-control" id="timerEndDate" datetime-picker="HH:mm" ng-model="vm.timer.enddate" is-open="vm.isTimerPeriod.open" enable-date="false" timepicker-options="vm.timepickerOptions" close-on-selection="true" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="vm.openCalendar($event, 'isTimerPeriod')"><i class="fa fa-clock-o"></i></button>
+				</span>
+			</p>
+		</div>
+
+  </form>  
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="vm.ok()" ng-disabled="timerForm.$invalid">Ok</button>
+  <button class="btn btn-default" ng-click="vm.cancel()">Cancel</button>
+</div>

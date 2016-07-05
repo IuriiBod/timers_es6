@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-10 col-lg-8">
+		<table class="table table-hover" id="timer-table">
+			<thead> 
+				<tr>
+						<th>Name</th>
+						<th>Descriptions</th>
+						<th>Start time</th>
+						<th>Duration</th>
+						<th>End time</th>
+						<th>Control</th>
+				</tr>
+			</thead>
+				<tbody><!--  infinite-scroll="vm.showTimers()" infinite-scroll-distance="0" -->
+					<tr ng-repeat="timer in vm.timers" class="{{vm.className(timer.enddate)}}" item-tm item="timer" current="vm.currentDate.date">
+					</tr>
+				</tbody>
+			</table>
+	</div>
+</div>
