@@ -3,27 +3,27 @@ const SERVICE = new WeakMap();
 
 class MainCtrl{
   constructor($uibModal, TimerService){
-		
-		MODAL.set(this, $uibModal);
-		SERVICE.set(this, TimerService);
-		
+    
+    MODAL.set(this, $uibModal);
+    SERVICE.set(this, TimerService);
+    
     this.timer = {};
-		this.timers = SERVICE.get(this).getTimers();
-		
-		this.currentDate = {date: new Date()};
-		SERVICE.get(this).getCurrentDate(this.currentDate);
-	}
-	
-	edit(index) {
-    this.timer = angular.copy(SERVICE.get(this).getTimer(index));
+    this.timers = SERVICE.get(this).getTimers();
+    
+    this.currentDate = {date: new Date()};
+    SERVICE.get(this).getCurrentDate(this.currentDate);
+  }
+  
+  edit(id) {
+    this.timer = angular.copy(SERVICE.get(this).getTimer(id));
     this.open();
   }
-	
-	reset(index) {
-		SERVICE.get(this).resetTimer(index, this.currentDate.date);
+  
+  reset(id) {
+    SERVICE.get(this).resetTimer(id, this.currentDate.date);
   }
-	
-	open() {
+  
+  open() {
     let modalInstance = MODAL.get(this).open({
       animation: true,
       templateUrl: 'views/partials/modal.html',
@@ -35,13 +35,13 @@ class MainCtrl{
     });
 
     modalInstance.result.then( timer => {
-			SERVICE.get(this).saveTimer(timer);
-			this.timer = {};
+      SERVICE.get(this).saveTimer(timer);
+      this.timer = {};
     });
   }
-	
-	delete(index) {
-    this.timer = angular.copy(SERVICE.get(this).getTimer(index));
+  
+  delete(id) {
+    this.timer = angular.copy(SERVICE.get(this).getTimer(id));
     
     let modalInstance = MODAL.get(this).open({
       animation: true,
@@ -53,13 +53,13 @@ class MainCtrl{
       }
     });
 
-    modalInstance.result.then( index => {
-      SERVICE.get(this).deleteTimer(index);
+    modalInstance.result.then( id => {
+      SERVICE.get(this).deleteTimer(id);
       this.timer = {};
     });
   }
-	
-	className(end) {
+  
+  className(end) {
     return SERVICE.get(this).calculateClassName(end, this.currentDate.date);
   }
 }

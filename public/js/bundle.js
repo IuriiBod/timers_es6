@@ -55,14 +55,14 @@ var MainCtrl = function () {
 
   _createClass(MainCtrl, [{
     key: 'edit',
-    value: function edit(index) {
-      this.timer = angular.copy(SERVICE.get(this).getTimer(index));
+    value: function edit(id) {
+      this.timer = angular.copy(SERVICE.get(this).getTimer(id));
       this.open();
     }
   }, {
     key: 'reset',
-    value: function reset(index) {
-      SERVICE.get(this).resetTimer(index, this.currentDate.date);
+    value: function reset(id) {
+      SERVICE.get(this).resetTimer(id, this.currentDate.date);
     }
   }, {
     key: 'open',
@@ -88,10 +88,10 @@ var MainCtrl = function () {
     }
   }, {
     key: 'delete',
-    value: function _delete(index) {
+    value: function _delete(id) {
       var _this2 = this;
 
-      this.timer = angular.copy(SERVICE.get(this).getTimer(index));
+      this.timer = angular.copy(SERVICE.get(this).getTimer(id));
 
       var modalInstance = MODAL.get(this).open({
         animation: true,
@@ -105,8 +105,8 @@ var MainCtrl = function () {
         }
       });
 
-      modalInstance.result.then(function (index) {
-        SERVICE.get(_this2).deleteTimer(index);
+      modalInstance.result.then(function (id) {
+        SERVICE.get(_this2).deleteTimer(id);
         _this2.timer = {};
       });
     }
@@ -128,7 +128,7 @@ exports.default = MainCtrl;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-		value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -138,27 +138,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var _uibMODALINSTANCE = new WeakMap();
 
 var ModalConfirmCtrl = function () {
-		function ModalConfirmCtrl($uibModalInstance, timer) {
-				_classCallCheck(this, ModalConfirmCtrl);
+  function ModalConfirmCtrl($uibModalInstance, timer) {
+    _classCallCheck(this, ModalConfirmCtrl);
 
-				_uibMODALINSTANCE.set(this, $uibModalInstance);
+    _uibMODALINSTANCE.set(this, $uibModalInstance);
 
-				this.timer = timer;
-		}
+    this.timer = timer;
+  }
 
-		_createClass(ModalConfirmCtrl, [{
-				key: 'ok',
-				value: function ok() {
-						_uibMODALINSTANCE.get(this).close(this.timer.id);
-				}
-		}, {
-				key: 'cancel',
-				value: function cancel() {
-						_uibMODALINSTANCE.get(this).dismiss('cancel');
-				}
-		}]);
+  _createClass(ModalConfirmCtrl, [{
+    key: 'ok',
+    value: function ok() {
+      _uibMODALINSTANCE.get(this).close(this.timer.id);
+    }
+  }, {
+    key: 'cancel',
+    value: function cancel() {
+      _uibMODALINSTANCE.get(this).dismiss('cancel');
+    }
+  }]);
 
-		return ModalConfirmCtrl;
+  return ModalConfirmCtrl;
 }();
 
 ModalConfirmCtrl.$inject = ['$uibModalInstance', 'timer'];
@@ -169,7 +169,7 @@ exports.default = ModalConfirmCtrl;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -179,45 +179,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var _uibMODALINSTANCE = new WeakMap();
 
 var ModalCtrl = function () {
-	function ModalCtrl($uibModalInstance, timer) {
-		_classCallCheck(this, ModalCtrl);
+  function ModalCtrl($uibModalInstance, timer) {
+    _classCallCheck(this, ModalCtrl);
 
-		_uibMODALINSTANCE.set(this, $uibModalInstance);
+    _uibMODALINSTANCE.set(this, $uibModalInstance);
 
-		this.timer = timer;
-		this.isTimerStart = {
-			open: false
-		};
-		this.isTimerPeriod = {
-			open: false
-		};
-		this.timepickerOptions = {
-			readonlyInput: false,
-			showMeridian: false
-		};
-	}
+    this.timer = timer;
+    this.isTimerStart = {
+      open: false
+    };
+    this.isTimerPeriod = {
+      open: false
+    };
+    this.timepickerOptions = {
+      readonlyInput: false,
+      showMeridian: false
+    };
+  }
 
-	_createClass(ModalCtrl, [{
-		key: 'ok',
-		value: function ok() {
-			_uibMODALINSTANCE.get(this).close(this.timer);
-		}
-	}, {
-		key: 'cancel',
-		value: function cancel() {
-			_uibMODALINSTANCE.get(this).dismiss('cancel');
-		}
-	}, {
-		key: 'openCalendar',
-		value: function openCalendar(event, picker) {
-			event.preventDefault();
-			event.stopPropagation();
+  _createClass(ModalCtrl, [{
+    key: 'ok',
+    value: function ok() {
+      _uibMODALINSTANCE.get(this).close(this.timer);
+    }
+  }, {
+    key: 'cancel',
+    value: function cancel() {
+      _uibMODALINSTANCE.get(this).dismiss('cancel');
+    }
+  }, {
+    key: 'openCalendar',
+    value: function openCalendar(event, picker) {
+      event.preventDefault();
+      event.stopPropagation();
 
-			this[picker].open = true;
-		}
-	}]);
+      this[picker].open = true;
+    }
+  }]);
 
-	return ModalCtrl;
+  return ModalCtrl;
 }();
 
 ModalCtrl.$inject = ['$uibModalInstance', 'timer'];
@@ -374,7 +374,7 @@ exports.default = moduleName;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-		value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -383,80 +383,94 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var INTERVAL = new WeakMap();
 var moduleName = 'timer.services';
-var _timers = [];
+var _timers = [],
+    _id = 0;
+
+function getIndexOf(id) {
+  for (var i = _timers.length - 1; i >= 0; i--) {
+    if (_timers[i].id === id) {
+      return i;
+    }
+  }
+  return -1;
+}
 
 var TimerService = function () {
-		function TimerService($interval) {
-				_classCallCheck(this, TimerService);
+  function TimerService($interval) {
+    _classCallCheck(this, TimerService);
 
-				INTERVAL.set(this, $interval);
-		}
+    INTERVAL.set(this, $interval);
+  }
 
-		_createClass(TimerService, [{
-				key: 'getTimers',
-				value: function getTimers() {
-						return _timers;
-				}
-		}, {
-				key: 'getTimer',
-				value: function getTimer(index) {
-						if (angular.isNumber(index)) {
-								return _timers[index];
-						} else {
-								return {};
-						}
-				}
-		}, {
-				key: 'saveTimer',
-				value: function saveTimer(timer) {
-						if (angular.isNumber(timer.id)) {
-								_timers.splice(timer.id, 1, timer);
-						} else {
-								timer.id = _timers.length;
-								_timers.push(timer);
-						}
-				}
-		}, {
-				key: 'resetTimer',
-				value: function resetTimer(index, date) {
-						var timer = this.getTimer(index);
-						timer.date = date;
-						this.saveTimer(timer);
-				}
-		}, {
-				key: 'deleteTimer',
-				value: function deleteTimer(index) {
-						_timers.splice(index, 1);
-				}
-		}, {
-				key: 'getCurrentDate',
-				value: function getCurrentDate(date) {
-						INTERVAL.get(this)(function () {
-								date.date = new Date();
-						}, 1000);
-				}
-		}, {
-				key: 'calculateClassName',
-				value: function calculateClassName(end, current) {
-						var ms = end - current;
-						if (ms > 600000) {
-								return 'before10';
-						} else if (ms > 300000) {
-								return 'before5';
-						} else if (ms > 0) {
-								return 'before1';
-						} else {
-								return 'before0';
-						}
-				}
-		}], [{
-				key: 'TimerServiceFactory',
-				value: function TimerServiceFactory($interval) {
-						return new TimerService($interval);
-				}
-		}]);
+  _createClass(TimerService, [{
+    key: 'getTimers',
+    value: function getTimers() {
+      return _timers;
+    }
+  }, {
+    key: 'getTimer',
+    value: function getTimer(id) {
+      if (angular.isNumber(id)) {
+        var index = getIndexOf(id);
+        return _timers[index];
+      } else {
+        return {};
+      }
+    }
+  }, {
+    key: 'saveTimer',
+    value: function saveTimer(timer) {
+      if (angular.isNumber(timer.id)) {
+        var index = getIndexOf(timer.id);
+        _timers.splice(index, 1, timer);
+      } else {
+        timer.id = _id;
+        _timers.push(timer);
+        _id++;
+      }
+    }
+  }, {
+    key: 'resetTimer',
+    value: function resetTimer(id, date) {
+      var timer = this.getTimer(id);
+      timer.date = date;
+      this.saveTimer(timer);
+    }
+  }, {
+    key: 'deleteTimer',
+    value: function deleteTimer(id) {
+      var index = getIndexOf(id);
+      _timers.splice(index, 1);
+    }
+  }, {
+    key: 'getCurrentDate',
+    value: function getCurrentDate(date) {
+      INTERVAL.get(this)(function () {
+        date.date = new Date();
+      }, 1000);
+    }
+  }, {
+    key: 'calculateClassName',
+    value: function calculateClassName(end, current) {
+      var ms = end - current;
+      if (ms > 600000) {
+        return 'before10';
+      } else if (ms > 300000) {
+        return 'before5';
+      } else if (ms > 0) {
+        return 'before1';
+      } else {
+        return 'before0';
+      }
+    }
+  }], [{
+    key: 'TimerServiceFactory',
+    value: function TimerServiceFactory($interval) {
+      return new TimerService($interval);
+    }
+  }]);
 
-		return TimerService;
+  return TimerService;
 }();
 
 TimerService.TimerServiceFactory.$inject = ['$interval'];
